@@ -1,0 +1,22 @@
+.profile__description {
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 500px;
+}
+
+@media screen and (max-width: 917px) {
+  .profile__description {
+    max-width: 294px;
+  }
+}
+
+@media screen and (max-width: 618px) {
+  .profile__description {
+    font-size: 14px;
+    max-width: 200px;
+  }
+}

@@ -1,0 +1,16 @@
+.popup__container_role_open-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  background-color: transparent;
+  max-width: 100%;
+  width: auto;
+}
+
+@media screen and (max-width: 400px) {
+  .popup__container_role_open-image {
+    padding: 0;
+  }
+}
