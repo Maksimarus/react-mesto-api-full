@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.baseUrl = 'https://auth.nomoreparties.co';
+    this.baseUrl = 'http://api.mesto.maksimar.nomoredomains.club';
     this._headers = {
       'Content-Type': 'application/json',
     };
@@ -25,6 +25,7 @@ class Auth {
     return this._request(`${this.baseUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
+			credentials: 'include',
       body: JSON.stringify({
         email,
         password,

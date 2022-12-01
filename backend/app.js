@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const userRouter = require('./routes/userRouter');
 const cardRouter = require('./routes/cardRouter');
@@ -11,6 +12,19 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { NotFound } = require('./errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'https://mesto.maksimar.nomoredomains.club',
+    'https://YOUR.github.io',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
 
 const PORT = 3000;
 const limiter = rateLimit({
@@ -27,7 +41,7 @@ app.use(limiter);
 app.use(cookieParser());
 
 app.use(requestLogger);
-
+app.use('*', cors(options));
 app.use('/', authRouter);
 
 app.use(auth);
