@@ -4,7 +4,7 @@ import auth from '../utils/auth';
 import {useForm} from '../hooks/useForm';
 import AuthForm from './AuthForm';
 
-const Register = ({openSuccessTooltip, openFailTooltip}) => {
+const Register = ({openSuccessTooltip, openFailTooltip, onClose}) => {
   const {values, handleChange} = useForm({email: '', password: ''});
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -17,6 +17,7 @@ const Register = ({openSuccessTooltip, openFailTooltip}) => {
       openSuccessTooltip();
       setTimeout(() => {
         history.push('/sign-in');
+				onClose();
       }, 2000);
     } catch (error) {
       console.error(error);

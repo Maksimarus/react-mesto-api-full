@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -15,9 +16,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const options = {
   origin: [
-    'http://localhost:3000',
+    'http://localhost:3001',
     'https://mesto.maksimar.nomoredomains.club',
-    'https://YOUR.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -34,6 +34,7 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 const app = express();
+app.use('*', cors(options));
 
 app.use(express.json());
 app.use(helmet());
@@ -41,7 +42,6 @@ app.use(limiter);
 app.use(cookieParser());
 
 app.use(requestLogger);
-app.use('*', cors(options));
 app.use('/', authRouter);
 
 app.use(auth);

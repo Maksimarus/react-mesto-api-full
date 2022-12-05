@@ -81,7 +81,8 @@ class Api {
 }
 
 export default new Api({
-  baseUrl: 'http://api.mesto.maksimar.nomoredomains.club',
+  // baseUrl: 'http://api.mesto.maksimar.nomoredomains.club',
+	baseUrl: 'http://localhost:3000',
   headers: {
     authorization: 'd9f8cf7e-4e37-4ac8-b9ec-4d3eff2c0e35',
     'Content-Type': 'application/json',

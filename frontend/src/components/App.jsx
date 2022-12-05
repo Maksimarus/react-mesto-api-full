@@ -192,6 +192,7 @@ const App = () => {
             <Register
               openSuccessTooltip={openSuccessTooltip}
               openFailTooltip={openFailTooltip}
+							onClose={closeAllPopups}
             />
           </Route>
           <Route path="*">
