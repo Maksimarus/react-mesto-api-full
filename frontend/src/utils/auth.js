@@ -1,7 +1,7 @@
 class Auth {
   constructor() {
-    // this.baseUrl = 'http://api.mesto.maksimar.nomoredomains.club';
-		this.baseUrl = 'http://localhost:3000';
+    this.baseUrl = 'http://api.mesto.maksimar.nomoredomains.club';
+		// this.baseUrl = 'http://localhost:3000';
     this._headers = {
       'Content-Type': 'application/json',
     };
