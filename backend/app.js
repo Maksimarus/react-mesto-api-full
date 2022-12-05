@@ -17,8 +17,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const options = {
   origin: [
     'http://localhost:3001',
-    'https://mesto.maksimar.nomoredomains.club',
-    'https://api.mesto.maksimar.nomoredomains.club',
+    'http://mesto.maksimar.nomoredomains.club',
+    'http://api.mesto.maksimar.nomoredomains.club',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -57,7 +57,7 @@ app.use(errors());
 app.use(errorsHandler);
 
 try {
-  mongoose.connect('mongodb://localhost:27017/mestodb', {
+  mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
