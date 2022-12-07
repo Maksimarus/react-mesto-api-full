@@ -30,6 +30,7 @@ class Api {
     return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
+			credentials: 'include',
     });
   }
   postNewCard({name, link}) {
@@ -75,7 +76,7 @@ class Api {
     return this._request(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: this._headers,
-			credentials: 'include', 
+			credentials: 'include',
     });
   }
 }

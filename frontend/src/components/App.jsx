@@ -58,22 +58,22 @@ const App = () => {
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    const handleCheckToken = async () => {
-      try {
-        if (localStorage.getItem('token')) {
-          const token = localStorage.getItem('token');
-          const {data} = await auth.checkToken(token);
-          setUserEmail(data.email);
-          setIsAuth(true);
-          history.push('/');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    handleCheckToken();
-  }, [isAuth]);
+  // useEffect(() => {
+  //   const handleCheckToken = async () => {
+  //     try {
+  //       if (localStorage.getItem('token')) {
+  //         const token = localStorage.getItem('token');
+  //         const {data} = await auth.checkToken(token);
+  //         setUserEmail(data.email);
+  //         setIsAuth(true);
+  //         history.push('/');
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   handleCheckToken();
+  // }, [isAuth]);
 
   const handleCardClick = card => {
     setSelectedCard(card);

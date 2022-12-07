@@ -33,14 +33,14 @@ class Auth {
       }),
     });
   }
-  checkToken(token) {
-    return this._request(`${this.baseUrl}/users/me`, {
-      method: 'GET',
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
+  // checkToken(token) {
+  //   return this._request(`${this.baseUrl}/users/me`, {
+  //     method: 'GET',
+  //     headers: {
+  //       ...this._headers,
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // }
 }
 export default new Auth();

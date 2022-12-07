@@ -13,6 +13,7 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { NotFound } = require('./errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { MONGO_DB } = require('./env');
 
 const options = {
   origin: [
@@ -23,7 +24,7 @@ const options = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization', 'credentials'],
   credentials: true,
 };
 
@@ -57,7 +58,7 @@ app.use(errors());
 app.use(errorsHandler);
 
 try {
-  mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
+  mongoose.connect(MONGO_DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
