@@ -13,8 +13,7 @@ const Login = ({setIsAuth}) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const {token} = await auth.authorize(values.email, values.password);
-      localStorage.setItem('token', token);
+			await auth.authorize(values.email, values.password);
       setIsAuth(true);
       history.push('/');
     } catch (error) {

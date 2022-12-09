@@ -49,8 +49,12 @@ const login = async (req, res, next) => {
   }
 };
 
-const logout = (req, res) => {
-  res.clearCookie('jwt').send('Вы вышли из системы');
+const logout = (req, res, next) => {
+  try {
+    res.clearCookie('jwt').send({ message: 'Вы вышли из системы' });
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {

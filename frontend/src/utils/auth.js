@@ -1,7 +1,6 @@
 class Auth {
   constructor() {
-    this.baseUrl = 'http://api.mesto.maksimar.nomoredomains.club';
-		// this.baseUrl = 'http://localhost:3000';
+    this.baseUrl = 'https://api.mesto.maksimar.nomoredomains.club'; 
     this._headers = {
       'Content-Type': 'application/json',
     };
@@ -33,14 +32,23 @@ class Auth {
       }),
     });
   }
-  // checkToken(token) {
-  //   return this._request(`${this.baseUrl}/users/me`, {
-  //     method: 'GET',
-  //     headers: {
-  //       ...this._headers,
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // }
+  getMe() {
+    return this._request(`${this.baseUrl}/users/me`, {
+      method: 'GET',
+			credentials: 'include',
+      headers: {
+        ...this._headers,
+      },
+    });
+  }
+	logout() {
+		return this._request(`${this.baseUrl}/logout`, {
+			method: 'POST',
+			credentials: 'include',
+      headers: {
+        ...this._headers,
+      },
+		});
+	}
 }
 export default new Auth();

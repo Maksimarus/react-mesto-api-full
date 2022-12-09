@@ -1,13 +1,18 @@
 import {useState} from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
 import logo from '../images/icons/logo.svg';
+import Auth from '../utils/auth';
 
 const Header = ({setIsAuth, userEmail}) => {
   const [isVisibleInfo, setIsVisibleInfo] = useState(false);
-  const handleLogout = () => {
-    setIsVisibleInfo(false);
-    setIsAuth(false);
-    localStorage.removeItem('token');
+  const handleLogout = async () => {
+		try {
+			await Auth.logout();
+			setIsVisibleInfo(false);
+			setIsAuth(false);
+		} catch (error) {
+			console.error(error);
+		}
   };
   const onClickBurger = () => {
     setIsVisibleInfo(!isVisibleInfo);

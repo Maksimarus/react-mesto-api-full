@@ -34,7 +34,9 @@ const App = () => {
 
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [tooltipStatus, setTooltipStatus] = useState(false);
+
   useEffect(() => {
+		if(!isAuth) return;
     const fetchCards = async () => {
       try {
         const initialCards = await api.getInitialCards();
@@ -44,9 +46,10 @@ const App = () => {
       }
     };
     fetchCards();
-  }, []);
+  }, [isAuth]);
 
   useEffect(() => {
+		if(!isAuth) return;
     const fetchUser = async () => {
       try {
         const user = await api.getUser();
@@ -56,24 +59,17 @@ const App = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [isAuth]);
 
-  // useEffect(() => {
-  //   const handleCheckToken = async () => {
-  //     try {
-  //       if (localStorage.getItem('token')) {
-  //         const token = localStorage.getItem('token');
-  //         const {data} = await auth.checkToken(token);
-  //         setUserEmail(data.email);
-  //         setIsAuth(true);
-  //         history.push('/');
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   handleCheckToken();
-  // }, [isAuth]);
+	useEffect(() => {
+		const handleAuth = async () => {
+			const me = await auth.getMe();
+			setUserEmail(me.email);
+			setIsAuth(true);
+			history.push('/');
+		}
+		handleAuth();
+	}, []);
 
   const handleCardClick = card => {
     setSelectedCard(card);
@@ -125,7 +121,7 @@ const App = () => {
     }
   };
   const handleCardLike = async card => {
-    const isLiked = card.likes.some(user => user._id === currentUser._id);
+    const isLiked = card.likes.some(user => user === currentUser._id);
     try {
       const newCard = await api.changeLikeCardStatus(card._id, isLiked);
       setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
