@@ -20,6 +20,8 @@ const options = {
     'http://localhost:3001',
     'http://mesto.maksimar.nomoredomains.club',
     'http://api.mesto.maksimar.nomoredomains.club',
+    'https://mesto.maksimar.nomoredomains.club',
+    'https://api.mesto.maksimar.nomoredomains.club',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
