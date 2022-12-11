@@ -42,10 +42,10 @@ app.use('*', cors(options));
 
 app.use(express.json());
 app.use(helmet());
+app.use(requestLogger);
 app.use(limiter);
 app.use(cookieParser());
 
-app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
